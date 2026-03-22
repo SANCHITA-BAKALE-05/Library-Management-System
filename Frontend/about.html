@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Books</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="fetchBooks()">
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="brand-box">
+        <h2>Library Hub</h2>
+        <p>Smart Admin Panel</p>
+      </div>
+
+      <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="add-book.html">Add Book</a>
+        <a href="view-books.html" class="active">View Books</a>
+        <a href="about.html">About</a>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <div class="hero-box">
+        <div>
+          <h1>Manage Books</h1>
+          <p>View, update, and delete all records from one attractive table.</p>
+        </div>
+        <div class="hero-badge">CRUD</div>
+      </div>
+
+      <div class="glass-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Category</th>
+              <th>Year</th>
+              <th>Qty</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="booksTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="brand-box">
+        <h2>Library Hub</h2>
+        <p>Smart Admin Panel</p>
+      </div>
+
+      <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="add-book.html" class="active">Add Book</a>
+        <a href="view-books.html">View Books</a>
+        <a href="about.html">About</a>
+      </nav>
+    </aside>
+
+   <div class="content">
+   <div class="hero-box">
+   <div>
+    <h1>Add New Book</h1>
+    <p>Expand your collection by registering new titles into the database.</p>
+ </div>
+ <div class="hero-badge">Create</div>
+ </div> 
+
+      <div class="form-box">
+        <form id="bookForm">
+          <input type="text" id="title" placeholder="Book Title" required>
+          <input type="text" id="author" placeholder="Author Name" required>
+          <input type="text" id="category" placeholder="Category" required>
+          <input type="number" id="publishedYear" placeholder="Published Year" required>
+          <input type="number" id="quantity" placeholder="Quantity" required>
+          <button type="submit" class="full-width">Add Book</button>
+        </form>
+        <p id="message"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

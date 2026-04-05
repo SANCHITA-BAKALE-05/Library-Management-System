@@ -27,5 +27,72 @@ Built with **Node.js, Express, MongoDB Atlas, and vanilla HTML/CSS/JS**.
 
 ## 📂 Project Structure
 
-Library-Management/ ├── backend/ │   ├── models/        # Mongoose schemas (Book, User) │   ├── routes/        # Express routes (authRoutes, bookRoutes) │   ├── middleware/    # Authentication & role-based middleware │   └── server.js      # Entry point ├── frontend/ │   ├── css/           # Stylesheets │   ├── js/            # Frontend scripts │   ├── images/        # Assets │   ├── dashboard.html # Admin/User dashboard │   ├── view-books.html# Book listing page │   └── ...            # Other pages (login, about, etc.) └── README.md
+```bash
+Library-Management
+│
+├── backend
+│   ├── models
+│   │   ├── Book.js
+│   │   └── User.js
+│   │
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   ├── bookRoutes.js
+│   │   └── dataRoutes.js
+│   │
+│   ├── middleware
+│   │   └── auth.js
+│   │
+│   ├── server.js
+│   └── config.js
+│
+├── frontend
+│   ├── css
+│   │   └── style.css
+│   │
+│   ├── js
+│   │   └── script.js
+│   │
+│   ├── images
+│   │   └── logo.png
+│   │
+│   ├── index.html
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── view-books.html
+│   ├── add-book.html
+│   ├── about.html
+│   └── logout.html
+│
+├── .env
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── README.md
 
+```
+
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/library-management-system.git
+   cd library-management-system
+   ```
+
+2. **Install dependencies**
+    ```bash
+   cd backend
+   npm install
+    ```
+
+3. **Configure environment variables**
+     Create a .env file in backend/
+     Add your MongoDB Atlas URI and JWT secret:
+   ```bash
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
+   ```

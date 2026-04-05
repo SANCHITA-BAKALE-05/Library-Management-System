@@ -90,3 +90,46 @@ Library-Management-System
    MONGO_URI=your_mongodb_connection_string
    JWT_SECRET=your_secret_key
    ```
+
+4. **Run the backend server**
+    ```bash
+    node server.js
+    ```
+    -Server runs on http://localhost:5000
+
+5. **Open frontend**
+   -Open frontend/index.html in your browser
+   -Login as admin/user to access features
+
+---
+
+##📡 API Endpoints
+**📚 Books**
+  -GET /api/books → Fetch all books
+  -POST /api/books → Add new book (Admin only)
+  -PUT /api/books/:id → Update book (Admin only)
+  -DELETE /api/books/:id → Delete book (Admin only)
+  -POST /api/books/borrow/:id → Borrow book (User)
+  -POST /api/books/return/:id → Return book (User)
+**🔐 Auth**
+  -POST /api/auth/register → Register new user
+  -POST /api/auth/login → Login and get JWT
+
+---
+
+## 🔮 Feature Improvements
+
+Planned enhancements and future roadmap for the Library Management System:
+
+- 📊 **Analytics Dashboard**: Track borrowing trends, most popular books, and user activity.
+- 🔐 **User Borrow History**: Maintain logs so only the borrower can return a book.
+- 📱 **Responsive UI Upgrade**: Improve mobile and tablet experience with modern design.
+- 📦 **Quantity Controls for Admins**: Inline +/‑ buttons to adjust stock directly from the table.
+- 📧 **Email Notifications**: Notify users when borrowed books are due or when new books are added.
+- 🌍 **Search & Filter**: Advanced search by category, author, or availability.
+- 🗂 **Role Management**: Add librarian role with limited admin privileges.
+- 🛡 **Enhanced Security**: Password reset, stronger JWT handling, and audit logs.
+- ☁️ **Cloud Deployment**: Deploy on platforms like Heroku, Vercel, or Azure for live demo access.
+
+   JWT_SECRET=your_secret_key
+   ```

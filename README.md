@@ -90,8 +90,8 @@ Library-Management
     ```
 
 3. **Configure environment variables**
-     Create a .env file in backend/
-     Add your MongoDB Atlas URI and JWT secret:
+    - Create a .env file in backend/
+    - Add your MongoDB Atlas URI and JWT secret:
    ```bash
    MONGO_URI=your_mongodb_connection_string
    JWT_SECRET=your_secret_key

@@ -103,17 +103,17 @@ Library-Management-System
 
 ---
 
-##📡 API Endpoints
-**📚 Books**
-  -GET /api/books → Fetch all books
-  -POST /api/books → Add new book (Admin only)
-  -PUT /api/books/:id → Update book (Admin only)
-  -DELETE /api/books/:id → Delete book (Admin only)
-  -POST /api/books/borrow/:id → Borrow book (User)
-  -POST /api/books/return/:id → Return book (User)
-**🔐 Auth**
-  -POST /api/auth/register → Register new user
-  -POST /api/auth/login → Login and get JWT
+## 📡 API Endpoints
+ - **📚 Books**
+  - GET /api/books → Fetch all books
+  - POST /api/books → Add new book (Admin only)
+  - PUT /api/books/:id → Update book (Admin only)
+  - DELETE /api/books/:id → Delete book (Admin only)
+  - POST /api/books/borrow/:id → Borrow book (User)
+  - POST /api/books/return/:id → Return book (User)
+ - **🔐 Auth**
+  - POST /api/auth/register → Register new user
+  - POST /api/auth/login → Login and get JWT
 
 ---
 
@@ -131,5 +131,3 @@ Planned enhancements and future roadmap for the Library Management System:
 - 🛡 **Enhanced Security**: Password reset, stronger JWT handling, and audit logs.
 - ☁️ **Cloud Deployment**: Deploy on platforms like Heroku, Vercel, or Azure for live demo access.
 
-   JWT_SECRET=your_secret_key
-   ```

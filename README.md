@@ -28,3 +28,4 @@ Built with **Node.js, Express, MongoDB Atlas, and vanilla HTML/CSS/JS**.
 ## 📂 Project Structure
 
 Library-Management/ ├── backend/ │   ├── models/        # Mongoose schemas (Book, User) │   ├── routes/        # Express routes (authRoutes, bookRoutes) │   ├── middleware/    # Authentication & role-based middleware │   └── server.js      # Entry point ├── frontend/ │   ├── css/           # Stylesheets │   ├── js/            # Frontend scripts │   ├── images/        # Assets │   ├── dashboard.html # Admin/User dashboard │   ├── view-books.html# Book listing page │   └── ...            # Other pages (login, about, etc.) └── README.md
+

@@ -28,47 +28,41 @@ Built with **Node.js, Express, MongoDB Atlas, and vanilla HTML/CSS/JS**.
 ## 📂 Project Structure
 
 ```bash
-Library-Management
-│
-├── backend
-│   ├── models
-│   │   ├── Book.js
-│   │   └── User.js
-│   │
-│   ├── routes
-│   │   ├── authRoutes.js
-│   │   ├── bookRoutes.js
-│   │   └── dataRoutes.js
-│   │
-│   ├── middleware
-│   │   └── auth.js
-│   │
-│   ├── server.js
-│   └── config.js
-│
-├── frontend
-│   ├── css
-│   │   └── style.css
-│   │
-│   ├── js
-│   │   └── script.js
-│   │
-│   ├── images
-│   │   └── logo.png
-│   │
-│   ├── index.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── view-books.html
-│   ├── add-book.html
-│   ├── about.html
-│   └── logout.html
-│
-├── .env
-├── .gitignore
-├── package.json
-├── package-lock.json
-└── README.md
+📦 Library-Management-System
+┣ 📂 Backend
+┃ ┣ 📂 middleware
+┃ ┃ ┗ 📜 auth.js
+┃ ┣ 📂 models
+┃ ┃ ┣ 📜 Book.js
+┃ ┃ ┗ 📜 User.js
+┃ ┣ 📂 routes
+┃ ┃ ┣ 📜 authRoutes.js
+┃ ┃ ┣ 📜 bookRoutes.js
+┃ ┃ ┗ 📜 dataRoutes.js
+┃ ┣ 📜 server.js
+┃ ┣ 📜 package.json
+┃ ┣ 📜 package-lock.json
+┃ ┣ 📜 .env
+┃ ┗ 📂 node_modules
+
+┣ 📂 Frontend
+┃ ┣ 📂 css
+┃ ┃ ┗ 📜 style.css
+┃ ┣ 📂 js
+┃ ┃ ┗ 📜 script.js
+┃ ┣ 📂 images
+┃ ┣ 📜 index.html
+┃ ┣ 📜 about.html
+┃ ┣ 📜 about_index.html
+┃ ┣ 📜 add-book.html
+┃ ┣ 📜 dashboard.html
+┃ ┣ 📜 login.html
+┃ ┣ 📜 logout.html
+┃ ┗ 📜 signup.html
+
+┣ 📜 view-books.html
+┣ 📜 .gitignore
+┗ 📜 README.md
 
 ```
 

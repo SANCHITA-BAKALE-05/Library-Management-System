@@ -3,10 +3,20 @@ const DATA_API_URL = "http://localhost:5000/api/data";
 
 const form = document.getElementById("bookForm");
 
+// ✅ Redirect to login if not authenticated
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "login.html";
+  }
+});
+
+// ✅ Add Book
 if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("token");
     const book = {
       title: document.getElementById("title").value,
       author: document.getElementById("author").value,
@@ -16,26 +26,40 @@ if (form) {
     };
 
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify(book)
       });
 
-      document.getElementById("message").innerText = "Book added successfully!";
-      form.reset();
+      if (res.ok) {
+        document.getElementById("message").innerText = "✅ Book added successfully!";
+        form.reset();
+        fetchBooks();
+        loadDashboard();
+      } else {
+        const errData = await res.json();
+        document.getElementById("message").innerText = `❌ Error: ${errData.message}`;
+      }
     } catch (error) {
-      document.getElementById("message").innerText = "Error adding book";
+      document.getElementById("message").innerText = "⚠️ Failed to connect to server.";
     }
   });
 }
 
+// ✅ Fetch Books
 async function fetchBooks() {
   const booksTable = document.getElementById("booksTable");
   if (!booksTable) return;
 
   try {
-    const res = await fetch(API_URL);
+    const token = localStorage.getItem("token");
+    const res = await fetch(API_URL, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const data = await res.json();
 
     booksTable.innerHTML = "";
@@ -56,13 +80,18 @@ async function fetchBooks() {
       `;
     });
   } catch (error) {
-    console.log("Error fetching books");
+    console.log("Error fetching books:", error);
   }
 }
 
+// ✅ Delete Book
 async function deleteBook(id) {
   try {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    const token = localStorage.getItem("token");
+    await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     fetchBooks();
     loadDashboard();
   } catch (error) {
@@ -70,6 +99,7 @@ async function deleteBook(id) {
   }
 }
 
+// ✅ Update Book
 async function updateBook(id) {
   const title = prompt("Enter new title");
   const author = prompt("Enter new author");
@@ -83,9 +113,13 @@ async function updateBook(id) {
   }
 
   try {
+    const token = localStorage.getItem("token");
     await fetch(`${API_URL}/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
       body: JSON.stringify({ title, author, category, publishedYear, quantity })
     });
 
@@ -96,15 +130,17 @@ async function updateBook(id) {
   }
 }
 
+// ✅ Dashboard Loader
 async function loadDashboard() {
   const sampleBooksCount = document.getElementById("sampleBooksCount");
-  const mongoBooksCount = document.getElementById("mongoBooksCount");
+  const totalBooks = document.getElementById("totalBooks");
   const totalQuantity = document.getElementById("totalQuantity");
   const availableCount = document.getElementById("availableCount");
   const sampleBooksTable = document.getElementById("sampleBooksTable");
   const recentBooks = document.getElementById("recentBooks");
 
   try {
+    // Sample data
     const sampleRes = await fetch(DATA_API_URL);
     const sampleData = await sampleRes.json();
 
@@ -114,9 +150,7 @@ async function loadDashboard() {
     if (sampleBooksTable) sampleBooksTable.innerHTML = "";
 
     sampleData.forEach(book => {
-      if (book.status === "Available") {
-        available++;
-      }
+      if (book.status === "Available") available++;
 
       if (sampleBooksTable) {
         sampleBooksTable.innerHTML += `
@@ -131,10 +165,14 @@ async function loadDashboard() {
 
     if (availableCount) availableCount.innerText = available;
 
-    const mongoRes = await fetch(API_URL);
+    // Mongo data
+    const token = localStorage.getItem("token");
+    const mongoRes = await fetch(API_URL, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const mongoData = await mongoRes.json();
 
-    if (mongoBooksCount) mongoBooksCount.innerText = mongoData.length;
+    if (totalBooks) totalBooks.innerText = mongoData.length;
 
     let qty = 0;
     mongoData.forEach(book => {
@@ -156,6 +194,6 @@ async function loadDashboard() {
       });
     }
   } catch (error) {
-    console.log("Dashboard loading error");
+    console.log("Dashboard loading error:", error);
   }
 }

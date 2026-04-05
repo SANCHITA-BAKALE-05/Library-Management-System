@@ -9,12 +9,11 @@
 <body>
   <!-- Navigation bar -->
  <nav>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="add-book.html">Add Book</a>
-  <a href="view-books.html">View Books</a>
-  <a href="about.html" class="active">About</a>
-  <a href="logout.html">Logout</a>
-</nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="about.html">About</a>
+  </nav>
 
   <!-- Hero section -->
   <div class="hero">
@@ -25,28 +24,28 @@
   <div class="team-section">
     <h2>Meet Our Team</h2>
     <div class="team-grid">
-      <div class="team-card">
+        <div class="team-card">
         <img src="images/member1.jpeg" alt="Member 1">
         <h3>Sanchita Bakale</h3>
         <p>Backend Developer – Focused on authentication, role-based access, and MongoDB integration.</p>
-      </div>
-      <div class="team-card">
+        </div>
+        <div class="team-card">
         <img src="images/member2.jpeg" alt="Member 2">
         <h3>Khushi Mahalle</h3>
         <p>Frontend Designer – Created the dashboard UI and styled the login/signup forms.</p>
-      </div>
-      <div class="team-card">
+        </div>
+        <div class="team-card">
         <img src="images/member3.jpeg" alt="Member 3">
         <h3>Tanvi Raut</h3>
         <p>Project Manager – Structured documentation, contribution guidelines, and coordinated collaboration.</p>
-      </div>
-      <div class="team-card">
+        </div>
+        <div class="team-card">
         <img src="images/member4.jpeg" alt="Member 4">
         <h3>Sakshi Fatkar</h3>
         <p>Cloud Specialist – Deployed the app on Render and configured MongoDB Atlas.</p>
-      </div>
+        </div>
     </div>
-  </div>
+   </div>
 
   <!-- Main content -->
   <div class="content">
@@ -97,16 +96,5 @@
       </ul>
     </div>
   </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const role = localStorage.getItem("role");
-      if (role !== "admin") {
-        const addBookLink = document.querySelector('a[href="add-book.html"]');
-        if (addBookLink) {
-          addBookLink.style.display = "none";
-        }
-      }
-    });
-  </script>
 </body>
 </html>

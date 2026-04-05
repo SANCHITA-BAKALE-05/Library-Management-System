@@ -7,22 +7,15 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="fetchBooks()">
+  <nav>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="add-book.html">Add Book</a>
+    <a href="view-books.html">View Books</a>
+    <a href="about.html">About</a>
+    <a href="logout.html">Logout</a>
+  </nav>
 
   <div class="main-container">
-    <aside class="sidebar">
-      <div class="brand-box">
-        <h2>Library Hub</h2>
-        <p>Smart Admin Panel</p>
-      </div>
-
-      <nav>
-        <a href="index.html">Dashboard</a>
-        <a href="add-book.html">Add Book</a>
-        <a href="view-books.html" class="active">View Books</a>
-        <a href="about.html">About</a>
-      </nav>
-    </aside>
-
     <div class="content">
       <div class="hero-box">
         <div>
@@ -50,6 +43,125 @@
     </div>
   </div>
 
-  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const role = localStorage.getItem("role");
+      if (role !== "admin") {
+        const addBookLink = document.querySelector('a[href="add-book.html"]');
+        if (addBookLink) {
+          addBookLink.style.display = "none";
+        }
+      }
+    });
+async function fetchBooks() {
+  try {
+    const res = await fetch("http://localhost:5000/api/books", {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+    const books = await res.json();
+    renderBooks(books);
+  } catch (err) {
+    console.error("Error fetching books:", err);
+  }
+}
+
+function renderBooks(books) {
+  const role = localStorage.getItem("role");
+  const tableBody = document.getElementById("booksTable");
+
+  tableBody.innerHTML = books.map(book => {
+    let actions = "";
+
+    if (role === "admin") {
+      actions = `
+        <button onclick="editBook('${book._id}')">Edit</button>
+        <button onclick="deleteBook('${book._id}')">Delete</button>
+      `;
+    } else {
+      actions = `
+        ${book.quantity > 0 
+          ? `<button onclick="borrowBook('${book._id}')">Borrow</button>` 
+          : `<span>Not Available</span>`}
+      `;
+    }
+
+    return `
+      <tr>
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.category}</td>
+        <td>${book.publishedYear}</td>
+        <td>${book.quantity}</td>
+        <td>${actions}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+// Delete a book (admin only)
+async function deleteBook(id) {
+  try {
+    const res = await fetch(`http://localhost:5000/api/books/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+    if (res.ok) {
+      fetchBooks(); // reload table after deletion
+    } else {
+      alert("Failed to delete book");
+    }
+  } catch (err) {
+    console.error("Error deleting book:", err);
+  }
+}
+
+// Edit a book (admin only)
+async function editBook(id) {
+  const newQty = prompt("Enter new quantity:");
+  if (newQty === null) return; // cancelled
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/books/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({ quantity: parseInt(newQty) })
+    });
+    if (res.ok) {
+      fetchBooks(); // reload table after update
+    } else {
+      alert("Failed to update book");
+    }
+  } catch (err) {
+    console.error("Error updating book:", err);
+  }
+}
+
+// Borrow a book (user only)
+async function borrowBook(id) {
+  try {
+    const res = await fetch(`http://localhost:5000/api/books/borrow/${id}`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    });
+    if (res.ok) {
+      fetchBooks();
+    } else {
+      alert("Failed to borrow book");
+    }
+  } catch (err) {
+    console.error("Error borrowing book:", err);
+  }
+}
+
+// Run fetchBooks when page loads
+document.addEventListener("DOMContentLoaded", fetchBooks);
+</script>
 </body>
 </html>

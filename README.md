@@ -30,15 +30,15 @@ Built with **Node.js, Express, MongoDB Atlas, and vanilla HTML/CSS/JS**.
 ```bash
 Library-Management-System
 ├── Backend
-│   ├── middleware
-│   |   └──auth.js
-│   ├── models
-|   |   ├── Book.js
-|   |   └── User.js
+|   ├── middleware
+|   │   └──auth.js
+|   ├── models
+|   │   ├── Book.js
+|   │   └── User.js
 |   ├── routes
-|   |   ├──authRoutes.js
-|   |   ├── bookRoutes.js
-|   |   └──dataRoutes.js
+|   │   ├──authRoutes.js
+|   │   ├── bookRoutes.js
+|   │   └──dataRoutes.js
 |   ├── server.js
 |   ├── package.json
 |   ├── package-lock.json
@@ -47,9 +47,9 @@ Library-Management-System
 |
 ├── Frontend
 |   ├── css
-|   |   └──style.css
+|   │   └──style.css
 |   ├── js
-|   |   └── script.js
+|   │   └── script.js
 |   ├── images
 |   ├── index.html
 |   ├── about.html
